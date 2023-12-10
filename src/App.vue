@@ -1,5 +1,6 @@
 <template>
   <MainNav />
+  <router-view />
 </template>
 <script>
 import MainNav from '@/components/MainNav.vue'

@@ -1,16 +1,16 @@
 <template>
-  <header class="text-sm w-full">
+  <header :class="['text-sm', 'w-full', heightClass]">
     <div class="h-16 fixed top-0 left-0 w-full">
-      <div class="flex items-center flex-nowrap border-b h-full px-12">
-        <a
+      <div class="flex items-center flex-nowrap border-b h-full px-12 bg-white">
+        <router-link
           data-testid="test-hover"
-          href="/"
+          to="/"
           class="hover:cursor-pointer"
           @mouseover="handleHover"
           @mouseleave="handleLeave"
         >
           <img class="w-48" :src="logoUrl" alt="logo" />
-        </a>
+        </router-link>
         <div class="ml-12">
           <ul class="flex items-center h-full text-lg">
             <li
@@ -18,7 +18,9 @@
               :key="menuItem"
               class="ml-8 first:ml-0 h-full flex items-center"
             >
-              <a class="text-zinc-600 hover:text-zinc-950" href="">{{ menuItem }}</a>
+              <router-link :to="menuItem.url" class="text-zinc-600 hover:text-zinc-950" href="">{{
+                menuItem.text
+              }}</router-link>
             </li>
           </ul>
         </div>
@@ -56,9 +58,20 @@ export default {
       logoUrl: mainLogo,
       logoDefault: mainLogo,
       logoHover: hoverLogo,
-      menuItems: ['Locations', 'Teams', 'Benefits', 'Jobs', 'Students'],
+      menuItems: [
+        { text: 'Locations', url: '/locations' },
+        { text: 'Teams', url: '/teams' },
+        { text: 'Benefits', url: '/benefits' },
+        { text: 'Jobs', url: '/jobs' },
+        { text: 'Students', url: '/students' }
+      ],
       isLoggedIn: false,
       isShowToggle: false
+    }
+  },
+  computed: {
+    heightClass() {
+      return { 'h-16': !this.isLoggedIn, 'h-32': this.isLoggedIn }
     }
   },
   methods: {

@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-14 border-b">
+  <div class="w-full h-14 border-b bg-white">
     <div class="flex items-center h-full px-8">
       <div>
         <font-awesome-icon :icon="['fas', 'search']" class="mr-3" />
